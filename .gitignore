@@ -1,0 +1,38 @@
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Local env files
+.env
+.env.local
+.env.*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# MacOS
+.DS_Store
+
+# Vite cache
+.vite/
+
+# VSCode settings
+.vscode/
+
+# Temporary files
+*.tmp
+*.temp
+
+# OS generated files
+Thumbs.db
+Desktop.ini
+
+# Public images (optional if you want to track your own assets)
+# public/game1.jpg
+# public/game2.jpg
