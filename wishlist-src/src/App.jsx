@@ -6,34 +6,23 @@ import Toast from './components/Toast';
 import { uid } from './utils';
 import './App.css';
 
-const STEAM_CDN = (id) => `https://cdn.akamai.steamstatic.com/steam/apps/${id}/header.jpg`;
-
 const DEFAULT_GAMES = [
-  { id: uid(), gameName: 'Fallout 3',         developer: 'Bethesda Game Studios', price: '$9.99',  image: STEAM_CDN(22300),   releaseDate: 2008 },
-  { id: uid(), gameName: 'Skyrim',            developer: 'Bethesda Game Studios', price: '$39.99', image: STEAM_CDN(489830),  releaseDate: 2016 },
-  { id: uid(), gameName: 'In Stars and Time', developer: 'insertdisc5',           price: '$19.99', image: STEAM_CDN(1677310), releaseDate: 2023 },
-  { id: uid(), gameName: 'Risk of Rain 2',    developer: 'Hopoo Games',           price: '$8.24',  image: STEAM_CDN(632360),  releaseDate: 2020 },
-  { id: uid(), gameName: 'Apex Legends',      developer: 'Respawn',               price: 'FREE',   image: STEAM_CDN(1172470), releaseDate: 2020 },
-  { id: uid(), gameName: 'Call of Duty',      developer: 'Treyarch / Raven',      price: '$69.99', image: STEAM_CDN(1938090), releaseDate: 2022 },
-  { id: uid(), gameName: 'Terraria',          developer: 'Re-Logic',              price: '$9.99',  image: STEAM_CDN(105600),  releaseDate: 2011 },
-  { id: uid(), gameName: 'SIGNALIS',          developer: 'rose-engine',           price: '$19.99', image: STEAM_CDN(1621720), releaseDate: 2022 },
-  { id: uid(), gameName: 'Caves of Qud',      developer: 'Freehold Games',        price: '$29.99', image: STEAM_CDN(333640),  releaseDate: 2024 },
-  { id: uid(), gameName: 'Civilization VI',   developer: 'Firaxis Games',         price: '$2.99',  image: STEAM_CDN(289070),  releaseDate: 2016 },
+  { id: uid(), gameName: 'Fallout 3',          developer: 'Bethesda Game Studios', price: '$9.99',  image: '/game1.jpg',  releaseDate: 2008 },
+  { id: uid(), gameName: 'Skyrim',             developer: 'Bethesda Game Studios', price: '$39.99', image: '/game2.jpg',  releaseDate: 2016 },
+  { id: uid(), gameName: 'In Stars and Time',  developer: 'insertdisc5',           price: '$19.99', image: '/game3.jpg',  releaseDate: 2023 },
+  { id: uid(), gameName: 'Risk of Rain 2',     developer: 'Hopoo Games',           price: '$8.24',  image: '/game4.jpg',  releaseDate: 2020 },
+  { id: uid(), gameName: 'Apex Legends',       developer: 'Respawn',               price: 'FREE',   image: '/game5.jpg',  releaseDate: 2020 },
+  { id: uid(), gameName: 'Call of Duty',       developer: 'Treyarch / Raven',      price: '$69.99', image: '/game6.jpg',  releaseDate: 2022 },
+  { id: uid(), gameName: 'Terraria',           developer: 'Re-Logic',              price: '$9.99',  image: '/game7.jpg',  releaseDate: 2011 },
+  { id: uid(), gameName: 'SIGNALIS',           developer: 'rose-engine',           price: '$19.99', image: '/game8.jpg',  releaseDate: 2022 },
+  { id: uid(), gameName: 'Caves of Qud',       developer: 'Freehold Games',        price: '$29.99', image: '/game9.jpg',  releaseDate: 2024 },
+  { id: uid(), gameName: 'Civilization VI',    developer: 'Firaxis Games',         price: '$2.99',  image: '/game10.jpg', releaseDate: 2016 },
 ];
 
 function loadGames() {
   try {
     const raw = localStorage.getItem('gameWishlist');
-    if (!raw) return null;
-    const games = JSON.parse(raw);
-    // Migrate: if any game still has a local /gameN.jpg path, discard the cache
-    // so DEFAULT_GAMES (with Steam CDN URLs) are used instead.
-    const hasStale = games.some(g => g.image && g.image.match(/^\/game\d+\.jpg$/));
-    if (hasStale) {
-      localStorage.removeItem('gameWishlist');
-      return null;
-    }
-    return games;
+    return raw ? JSON.parse(raw) : null;
   } catch {
     return null;
   }
